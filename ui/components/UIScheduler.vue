@@ -1407,8 +1407,10 @@ export default {
         },
 
         fieldItems () {
-            return defaultItems(this.locale)
-        },
+          const cronSupported = ['en', 'de', 'fr', 'it', 'nl', 'es' 'pl'] // (jeśli pl nie jest wspierane przez @vue-js-cron/core)
+          const cronLocale = cronSupported.includes(this.locale) ? this.locale : 'en'
+          return defaultItems(cronLocale)
+        }
 
         fields () {
             return [
