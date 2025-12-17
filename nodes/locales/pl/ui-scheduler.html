@@ -1,0 +1,88 @@
+# 🕙 Dokumentacja pomocy UI Scheduler
+
+Ten dokument zawiera kompletny przewodnik po konfiguracji ustawień noda UI Scheduler, jego użyciu w Dashboard 2.0 oraz dodatkowe informacje. UI Scheduler umożliwia automatyzację zadań na podstawie czasu, zdarzeń słonecznych lub wyrażeń cron.
+
+## 👆 Korzystanie z UI Scheduler w Dashboard 2.0
+
+### 🖥️ Główny interfejs
+
+- **🛠️ Pasek narzędzi**:
+  - **🔍 Wybór tematu**: Filtrowanie harmonogramów według tematu.
+  - **➕ Dodaj harmonogram**: Otwiera okno tworzenia nowego harmonogramu.
+  - **☰ Menu**: Dostęp do dodatkowych opcji, takich jak sprawdzanie aktualizacji lub zgłaszanie problemów.
+
+- **📋 Tabela harmonogramów**: Wyświetla wszystkie harmonogramy wraz z nazwą, opisem i statusem. Wiersze można rozwinąć, aby zobaczyć szczegóły.
+
+### 🗓️ Tworzenie harmonogramu
+
+1. **🖱️ Otwórz okno harmonogramu**: Kliknij ➕ na pasku narzędzi.
+2. **✏️ Wprowadź szczegóły**:
+   - **🏷️ Nazwa**: Unikalna nazwa harmonogramu.
+   - **📂 Temat**: Wybierz temat z listy. Tematy są definiowane w **Ustawieniach noda**.
+   - **⏲️ Typ**: Czas, Słońce lub Cron.
+   - **🔄 Okres**: Dla harmonogramów czasowych wybierz okres powtarzania.
+   - **🕒 Czas/Data**: Ustaw godzinę startu oraz – jeśli dotyczy – godzinę zakończenia lub czas trwania.
+   - **📦 Payload**: Wybierz typ payloadu i ewentualnie własną wartość.
+3. **💾 Zapisz**: Kliknij „Save”.
+
+### ✏️ Edycja harmonogramu
+
+- **🖊️ Edytuj**: Kliknij harmonogram w tabeli, rozwiń szczegóły i użyj ikony ołówka.
+- **🗑️ Usuń**: Kliknij ikonę kosza, aby usunąć harmonogram.
+
+### 🔄 Import i eksport harmonogramów
+
+- **📤 Eksport**: Kopiuje JSON harmonogramu do schowka (tylko w trybie edycji).
+- **📥 Import**: Wklej JSON, aby zaimportować harmonogram (tylko przy tworzeniu nowego).
+
+### ⚙️ Zarządzanie harmonogramami
+
+- **🔄 Włącz / Wyłącz**: Przełącznik umożliwia aktywowanie lub dezaktywowanie harmonogramu.
+
+---
+
+## 🚀 Funkcje zaawansowane
+
+### 🌞 Zdarzenia słoneczne
+
+- Harmonogramy oparte o wschód/zachód słońca z przesunięciami.
+- Obsługa różnych faz zmierzchu i świtu.
+
+### ⏰ Wyrażenia Cron
+
+- Zaawansowane planowanie z użyciem składni cron.
+- Obsługa standardowych pól i znaków specjalnych.
+
+### 📦 Własne payloady
+
+- Definiowanie własnych payloadów w **Ustawieniach noda**.
+- Obsługa JSON i innych typów danych.
+
+---
+
+## 🛠️ Ustawienia noda
+
+### 🏷️ Nazwa
+Unikalna nazwa noda UI Scheduler.
+
+### 👥 Grupa
+Grupa dashboardu, do której należy widget.
+
+### 📏 Rozmiar
+Rozmiar widgetu w interfejsie użytkownika.
+
+### 🏷️ Etykieta
+Tekst wyświetlany w UI.
+
+---
+
+## 🌍 Ustawienia lokalizacji
+
+### 🌐 Język
+Wybór języka interfejsu UI Scheduler.
+Dostępne języki: en, de, fr, it, nl, es (oraz pl w Twojej wersji).
+
+Można również ustawić język globalnie w:
+`~/.node-red/settings.js`
+```js
+lang: 'pl'
