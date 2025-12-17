@@ -1,5 +1,5 @@
 {
-  "name": "@cgjgh/node-red-dashboard-2-ui-scheduler",
+  "name": "@Legionas321/node-red-dashboard-2-ui-scheduler-midnight-fix",
   "version": "3.3.4",
   "description": "A UI scheduler node that integrates with Node-RED Dashboard 2.0",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cgjgh/node-red-dashboard-2-ui-scheduler.git"
+    "url": "https://github.com/Legionas321/node-red-dashboard-2-ui-scheduler"
   },
   "license": "Apache-2.0",
   "exports": {
