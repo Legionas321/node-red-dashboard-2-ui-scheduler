@@ -1181,6 +1181,7 @@ import es from '../locales/es.json'
 import fr from '../locales/fr.json'
 import it from '../locales/it.json'
 import nl from '../locales/nl.json'
+import pl from '../locales/pl.json'
 
 import CronFieldsTable from './CronFieldsTable.vue'
 import CronSpecialCharacters from './CronSpecialCharacters.vue'
