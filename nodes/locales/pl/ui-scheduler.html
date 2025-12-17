@@ -1,3 +1,88 @@
+<script type="text/javascript">
+    function _popoutSchedulerHelp (tag) {
+        const startTag = (name) => `<${name}>`
+        const endTag = (name) => `</${name}>`
+        const winHtml = `
+            ${startTag('html')}
+                ${startTag('head')}
+                    ${startTag('title')}ui-scheduler help${endTag('title')}
+                    ${startTag('style')}
+                    .fade-in {
+                        transition: opacity 1.5s ease-in-out;
+                    }
+                    .hidden {
+                        opacity: 0;
+                        visibility: hidden;
+                    }
+                    ${endTag('style')}
+                ${endTag('head')}
+                ${startTag('body')}
+                    ${startTag('script')}
+                        const styles = ${JSON.stringify([].map.call(document.querySelectorAll('[rel="stylesheet"]'), e => e.href))}
+                        const head = document.head || document.getElementsByTagName('head')[0]
+                        styles.forEach(href => {
+                            const el = document.createElement('link');
+                            el.rel="stylesheet"
+                            el.href = href
+                            head.appendChild(el);
+                        })
+                    ${endTag('script')}
+                    <div class="red-ui-editor help-content hidden" style="height: 100%">
+                        <div class="red-ui-sidebar-info">
+                            <div class="red-ui-sidebar-help-stack red-ui-panels" style="height: 100%;">
+                                <div class="red-ui-panel" style="overflow-y: auto;height: 100%;">
+                                    <div class="red-ui-help" style="padding: 6px;height: 100%;">
+                                        <h1 class="red-ui-help-title">ui-scheduler</h1>
+                                        <div class="red-ui-help">
+                                            <span class="red-ui-text-bidi-aware">
+                                                ${RED.nodes.getNodeHelp('ui-scheduler')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    ${startTag('script')}
+                        if (navigator.clipboard) {
+                            document.querySelector('.ui-scheduler-link-button').classList.add('hidden')
+                            const content = document.querySelector('.help-content');
+                            content.classList.add('hidden')
+                            content.classList.remove('hidden')
+                            content.classList.add('fade-in')
+                            const copyButtonLabel = "Copy"
+                            const blocks = document.querySelectorAll("pre.ui-scheduler-code")
+                            blocks.forEach((block) => {
+                                const button = document.createElement("button")
+                                button.innerText = copyButtonLabel
+                                button.classList.add('ui-scheduler-copy-button')
+                                button.addEventListener("click", copyCode)
+                                block.appendChild(button)
+                            })
+                        }
+                        async function copyCode(event) {
+                            const button = event.srcElement
+                            const pre = button.parentElement
+                            const code = pre.querySelector("code")
+                            const text = code.innerText
+                            await navigator.clipboard.writeText(text)
+                        }
+                    ${endTag('script')}
+                ${endTag('body')}
+            ${endTag('html')}`
+
+        const BOM = new Uint8Array([0xEF, 0xBB, 0xBF])
+        const winUrl = URL.createObjectURL(
+            new Blob([BOM, winHtml], { encoding: 'UTF-8', type: 'text/html;charset=UTF-8' })
+        )
+        const win = window.open(
+            winUrl + (tag ? '#' + tag : ''),
+            'win',
+            'width=800,height=600'
+        )
+    }
+</script>
+
 # 🕙 Dokumentacja pomocy UI Scheduler
 
 Ten dokument zawiera kompletny przewodnik po konfiguracji ustawień noda UI Scheduler, jego użyciu w Dashboard 2.0 oraz dodatkowe informacje. UI Scheduler umożliwia automatyzację zadań na podstawie czasu, zdarzeń słonecznych lub wyrażeń cron.
