@@ -940,6 +940,16 @@ function getNextTimeOccurrence (node, startDate, timeString) {
     return adjustedDate
 }
 
+function getNextEndTimeOccurrence (node, startDate, endTime) {
+    const endDate = getNextTimeOccurrence(node, startDate, endTime)
+    // If end time is the same moment as (or before) the start anchor, treat as "next day"
+    if (endDate <= new Date(startDate)) {
+        endDate.setDate(endDate.getDate() + 1)
+    }
+    return endDate
+}
+
+
 /**
      * Calculates the next occurrences of a time interval from the start of the year.
      *
@@ -3330,7 +3340,7 @@ module.exports = function (RED) {
                             let nextEndDate = null
 
                             if (isValidDateObject(schedule?.primaryTask?.lastDate)) {
-                                const nextEndTimeOccurrence = getNextTimeOccurrence(node, nextStartDate, schedule.solarEventTimespanTime || schedule.endTime)
+                                const nextEndTimeOccurrence = getNextEndTimeOccurrence(node, nextStartDate, schedule.solarEventTimespanTime || schedule.endTime)
                                 // check if end task is already completed
                                 if (now < nextEndTimeOccurrence) {
                                     nextEndDate = nextEndTimeOccurrence
@@ -3525,7 +3535,7 @@ module.exports = function (RED) {
                                 let nextEndDate = null
 
                                 if (isValidDateObject(schedule?.primaryTask?.lastDate)) {
-                                    const nextEndTimeOccurrence = getNextTimeOccurrence(node, schedule?.primaryTask?.lastDate, schedule.solarEventTimespanTime || schedule.endTime)
+                                    const nextEndTimeOccurrence = getNextEndTimeOccurrence(node, schedule?.primaryTask?.lastDate, schedule.solarEventTimespanTime || schedule.endTime)
                                     // check if end task is already completed
                                     if (now < nextEndTimeOccurrence) {
                                         nextEndDate = nextEndTimeOccurrence
@@ -3540,7 +3550,7 @@ module.exports = function (RED) {
                                 }
 
                                 if (!nextEndDate) {
-                                    nextEndDate = getNextTimeOccurrence(node, schedule?.primaryTask?.nextDate, schedule.solarEventTimespanTime || schedule.endTime)
+                                    nextEndDate = getNextEndTimeOccurrence(node, schedule?.primaryTask?.nextDate, schedule.solarEventTimespanTime || schedule.endTime)
                                     schedule.active = false
                                     schedule.currentStartTime = null
                                 }
